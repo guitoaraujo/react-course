@@ -1,12 +1,44 @@
-import React from 'react';
+import React, { component } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import InputField from './InputField';
+import Preview from './preview';
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class App extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      name:   '',
+      phone:  '',
+      email:  ''
+    };
+  }
+
+  getValue(event){
+    console.log(event);
+    let val = event.target.value
+    this.setState({ name: val })
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <form>
+          <InputField placeholder="Name" onChange={ event => { this.getValue(event)} }/><br/>
+          <InputField placeholder="Phone"/><br/>
+          <InputField placeholder="Email"/><br/>
+
+          <button type="submit">Send</button>
+        </form>
+        <div>
+          <Preview placeholder="Name" text={ this.state.name }/>
+          <Preview placeholder="Phone" />
+          <Preview placeholder="Email" />
+        </div>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'));
