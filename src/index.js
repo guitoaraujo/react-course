@@ -1,6 +1,6 @@
 import React, { component } from 'react';
 import ReactDOM from 'react-dom';
-import InputField from './InputField';
+import InputField from './input_field';
 import Preview from './preview';
 
 
@@ -9,9 +9,9 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      name:   '',
-      phone:  '',
-      email:  ''
+      name:   'igor',
+      phone:  '999 999 9999',
+      email:  'igor@igor.com'
     };
   }
 
