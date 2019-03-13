@@ -1,7 +1,7 @@
 import React, { component } from 'react';
 import ReactDOM from 'react-dom';
-import InputField from './input_field';
-import Preview from './preview';
+import { InputField } from './input_field';
+import { Preview } from './preview';
 
 
 class App extends React.Component {
@@ -9,32 +9,30 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      name:   'igor',
-      phone:  '999 999 9999',
-      email:  'igor@igor.com'
+      name:   '',
+      phone:  '',
+      email:  ''
     };
   }
 
-  getValue(event){
-    console.log(event);
-    let val = event.target.value
-    this.setState({ name: val })
+  handleInput(attribute, value){
+    this.setState({ [attribute]: value })
   }
 
   render() {
     return (
       <div className="container">
         <form>
-          <InputField placeholder="Name" onChange={ event => { this.getValue(event)} }/><br/>
-          <InputField placeholder="Phone"/><br/>
-          <InputField placeholder="Email"/><br/>
+          <InputField placeholder="Name"  onChange={ value => { this.handleInput('name', value)} }/><br/>
+          <InputField placeholder="Phone" onChange={ value => { this.handleInput('phone', value)} }/><br/>
+          <InputField placeholder="Email" onChange={ value => { this.handleInput('email', value)} }/><br/>
 
           <button type="submit">Send</button>
         </form>
         <div>
-          <Preview placeholder="Name" text={ this.state.name }/>
-          <Preview placeholder="Phone" />
-          <Preview placeholder="Email" />
+          <Preview placeholder="Name"   text={ this.state.name }/>
+          <Preview placeholder="Phone"  text={ this.state.phone }/>
+          <Preview placeholder="Email"  text={ this.state.email }/>
         </div>
       </div>
     )

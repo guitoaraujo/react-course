@@ -1,11 +1,9 @@
 import React from 'react'
 
-const InputField = props => {
+export function InputField({ placeholder, onChange }) {
   return (
     <div>
-      <input placeholder={ props.placeholder }/>
+      <input placeholder={ placeholder } onChange={ ({ target: { value  } }) => onChange(value) }/>
     </div>
   )
 }
-
-export default InputField;
