@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { UserForm } from './user_form';
-import { Preview } from './preview';
+import axios from  'axios';
 
+import { UserForm } from './userForm';
+import { Preview } from './preview';
 
 class App extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      name:       '',
-      phone:      '',
-      email:      '',
-      image_url:  'https://www.foot.com/wp-content/uploads/2017/03/placeholder.gif'
+      name:     '',
+      phone:    '',
+      email:    '',
+      imageUrl: ''
     };
+  }
+
+  async componentDidMount() {
+    const {data: {url: imageUrl}} = await axios.get('https://jsonplaceholder.typicode.com/photos/1')
+    this.setState({imageUrl})
   }
 
   handleInput(attribute, value){
@@ -23,12 +29,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div style={{ float: 'left' }}>
-          <UserForm handleInput={ this.handleInput.bind(this) } { ...this.state } />
-        </div>
-        <div style={{ float: 'right' }}>
-          <Preview { ...this.state } />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-6 foart-left">
+            <UserForm handleInput={ this.handleInput.bind(this) } { ...this.state } />
+          </div>
+          <div className="col-6 float-right">
+            <Preview { ...this.state } />
+          </div>
         </div>
       </div>
     )

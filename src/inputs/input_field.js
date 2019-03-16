@@ -1,9 +1,9 @@
 import React from 'react'
 
-export function InputField({ placeholder, value, handleInputTwo }) {
+export function InputField({ placeholder, value, onInputChange }) {
   return (
     <div>
-      <input placeholder={ placeholder } value={ value } onChange={ ({ target: { value  } }) => handleInputTwo(value) }/>
+      <input placeholder={ placeholder } value={ value } onChange={ ({ target: { value  } }) => onInputChange(value) }/>
     </div>
   )
 }
